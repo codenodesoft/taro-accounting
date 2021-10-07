@@ -1,0 +1,109 @@
+{
+    "name": "SupplyOrder",
+    "fields": [
+        {
+            "fieldName": "orderNo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateOfOrder",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "deliveryDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "SupplyOrderStatus",
+            "fieldValues": "ORDER_RECEIVED,PROCESSING_ORDER,ORDER_DELIVERED_AND_WAITING_FOR_MONEY_COLLECTION,ORDER_CLOSE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "areaWiseAccumulationRefNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZone",
+            "otherEntityRelationshipName": "supplyOrder",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZone",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZoneManager",
+            "otherEntityRelationshipName": "supplyOrder",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZoneManager",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyArea",
+            "otherEntityRelationshipName": "supplyOrder",
+            "relationshipName": "supplyArea",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplySalesRepresentative",
+            "otherEntityRelationshipName": "supplyOrder",
+            "relationshipName": "supplySalesRepresentative",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyAreaManager",
+            "otherEntityRelationshipName": "supplyOrder",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyAreaManager",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyShop",
+            "otherEntityRelationshipName": "supplyOrder",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyShop",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20191106144404",
+    "entityTableName": "supply_order",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

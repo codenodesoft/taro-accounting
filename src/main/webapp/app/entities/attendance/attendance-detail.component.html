@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="attendance">
+            <h2><span>Attendance</span> {{attendance.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Attendance Date</span></dt>
+                <dd>
+                    <span>{{attendance.attendanceDate}}</span>
+                </dd>
+                <dt><span>In Time</span></dt>
+                <dd>
+                    <span>{{attendance.inTime}}</span>
+                </dd>
+                <dt><span>Out Time</span></dt>
+                <dd>
+                    <span>{{attendance.outTime}}</span>
+                </dd>
+                <dt><span>Duration</span></dt>
+                <dd>
+                    <span>{{attendance.duration}}</span>
+                </dd>
+                <dt><span>Remarks</span></dt>
+                <dd>
+                    <span>{{attendance.remarks}}</span>
+                </dd>
+                <dt><span>Created By</span></dt>
+                <dd>
+                    <span>{{attendance.createdBy}}</span>
+                </dd>
+                <dt><span>Created On</span></dt>
+                <dd>
+                    <span>{{attendance.createdOn}}</span>
+                </dd>
+                <dt><span>Updated By</span></dt>
+                <dd>
+                    <span>{{attendance.updatedBy}}</span>
+                </dd>
+                <dt><span>Updated On</span></dt>
+                <dd>
+                    <span>{{attendance.updatedOn}}</span>
+                </dd>
+                <dt><span>Employee</span></dt>
+                <dd>
+                    <div *ngIf="attendance.employeeId">
+                        <a [routerLink]="['/employee', attendance.employeeId, 'view']">{{attendance.employeeFullName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Attendance Excel Upload</span></dt>
+                <dd>
+                    <div *ngIf="attendance.attendanceExcelUploadId">
+                        <a [routerLink]="['/attendance-excel-upload', attendance.attendanceExcelUploadId, 'view']">{{attendance.attendanceExcelUploadId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/attendance', attendance.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

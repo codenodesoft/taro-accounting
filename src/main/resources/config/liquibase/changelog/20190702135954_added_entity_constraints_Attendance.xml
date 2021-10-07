@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Attendance.
+    -->
+    <changeSet id="20190702135954-2" author="jhipster">
+        <validCheckSum>7:c6e0b6df310a8062505b8a2ca8c1f0f8</validCheckSum>
+        <addForeignKeyConstraint baseColumnNames="employee_id"
+                                 baseTableName="attendance"
+                                 constraintName="fk_attendance_employee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employee"/>
+
+        <addForeignKeyConstraint baseColumnNames="attendance_excel_upload_id"
+                                 baseTableName="attendance"
+                                 constraintName="fk_attendance_attendance_excel_upload_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="attendance_excel_upload"/>
+
+    </changeSet>
+</databaseChangeLog>

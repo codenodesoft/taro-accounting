@@ -1,0 +1,168 @@
+{
+    "name": "MonthlySalary",
+    "fields": [
+        {
+            "fieldName": "year",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "month",
+            "fieldType": "MonthType",
+            "fieldValues": "JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "basic",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "gross",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "houseRent",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "medicalAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "overTimeAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "foodAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "arrearAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "driverAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "fuelLubAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "mobileAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "travelAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "otherAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "festivalAllowance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "absent",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fine",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "advanceHO",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "advanceFactory",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "providentFund",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "tax",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "loanAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "billPayable",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "billReceivable",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "payable",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "approved",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "onHold",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "MonthlySalaryStatus",
+            "fieldValues": "APPROVED_BY_MANAGER,APPROVED_BY_ACCOUNTS,MODIFICATION_REQUEST_BY_ACCOUNTS,APPROVED_BY_CFO,MODIFICATION_REQUEST_BY_CFO,APPROVED_BY_MD,MODIFICATION_REQUEST_BY_MD"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "voucherGenerated",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "salaryMessages",
+            "otherEntityRelationshipName": "monthlySalary",
+            "relationshipName": "comments"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "monthlySalary",
+            "relationshipName": "employee",
+            "otherEntityField": "fullName"
+        }
+    ],
+    "changelogDate": "20190514160139",
+    "entityTableName": "monthly_salary",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

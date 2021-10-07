@@ -1,0 +1,95 @@
+{
+    "name": "SupplyShop",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "contact",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "additionalInformation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZone",
+            "otherEntityRelationshipName": "supplyShop",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZone",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyArea",
+            "otherEntityRelationshipName": "supplyShop",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyArea",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZoneManager",
+            "otherEntityRelationshipName": "supplyShop",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZoneManager",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyAreaManager",
+            "otherEntityRelationshipName": "supplyShop",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyAreaManager",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplySalesRepresentative",
+            "otherEntityRelationshipName": "supplyShop",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplySalesRepresentative",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20191106144403",
+    "entityTableName": "supply_shop",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

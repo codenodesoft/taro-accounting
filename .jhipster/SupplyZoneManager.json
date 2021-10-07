@@ -1,0 +1,60 @@
+{
+    "name": "SupplyZoneManager",
+    "fields": [
+        {
+            "fieldName": "endDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "SupplyZoneManagerStatus",
+            "fieldValues": "ACTIVE,INACTIVE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZone",
+            "otherEntityRelationshipName": "supplyZoneManager",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZone",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "supplyZoneManager",
+            "relationshipValidateRules": "required",
+            "relationshipName": "employee",
+            "otherEntityField": "fullName"
+        }
+    ],
+    "changelogDate": "20200417153632",
+    "entityTableName": "supply_zone_manager",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

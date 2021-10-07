@@ -1,0 +1,93 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="supplyMoneyCollection">
+            <h2><span>Supply Money Collection</span> {{supplyMoneyCollection.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Total Amount</span></dt>
+                <dd>
+                    <span>{{supplyMoneyCollection.totalAmount}}</span>
+                </dd>
+                <dt><span>Received Amount</span></dt>
+                <dd>
+                    <span>{{supplyMoneyCollection.receivedAmount}}</span>
+                </dd>
+                <dt><span>Remarks</span></dt>
+                <dd>
+                    <span>{{supplyMoneyCollection.remarks}}</span>
+                </dd>
+                <dt><span>Created By</span></dt>
+                <dd>
+                    <span>{{supplyMoneyCollection.createdBy}}</span>
+                </dd>
+                <dt><span>Created On</span></dt>
+                <dd>
+                    <span>{{supplyMoneyCollection.createdOn}}</span>
+                </dd>
+                <dt><span>Updated By</span></dt>
+                <dd>
+                    <span>{{supplyMoneyCollection.updatedBy}}</span>
+                </dd>
+                <dt><span>Updated On</span></dt>
+                <dd>
+                    <span>{{supplyMoneyCollection.updatedOn}}</span>
+                </dd>
+                <dt><span>Supply Zone</span></dt>
+                <dd>
+                    <div *ngIf="supplyMoneyCollection.supplyZoneId">
+                        <a [routerLink]="['/supply-zone', supplyMoneyCollection.supplyZoneId, 'view']">{{supplyMoneyCollection.supplyZoneName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Supply Zone Manager</span></dt>
+                <dd>
+                    <div *ngIf="supplyMoneyCollection.supplyZoneManagerId">
+                        <a [routerLink]="['/supply-zone-manager', supplyMoneyCollection.supplyZoneManagerId, 'view']">{{supplyMoneyCollection.supplyZoneManagerId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Supply Area</span></dt>
+                <dd>
+                    <div *ngIf="supplyMoneyCollection.supplyAreaId">
+                        <a [routerLink]="['/supply-area', supplyMoneyCollection.supplyAreaId, 'view']">{{supplyMoneyCollection.supplyAreaName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Supply Area Manager</span></dt>
+                <dd>
+                    <div *ngIf="supplyMoneyCollection.supplyAreaManagerId">
+                        <a [routerLink]="['/supply-area-manager', supplyMoneyCollection.supplyAreaManagerId, 'view']">{{supplyMoneyCollection.supplyAreaManagerId}}</a>
+                    </div>
+                </dd>
+                <dt><span>Supply Sales Representative</span></dt>
+                <dd>
+                    <div *ngIf="supplyMoneyCollection.supplySalesRepresentativeId">
+                        <a [routerLink]="['/supply-sales-representative', supplyMoneyCollection.supplySalesRepresentativeId, 'view']">{{supplyMoneyCollection.supplySalesRepresentativeName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Supply Shop</span></dt>
+                <dd>
+                    <div *ngIf="supplyMoneyCollection.supplyShopId">
+                        <a [routerLink]="['/supply-shop', supplyMoneyCollection.supplyShopId, 'view']">{{supplyMoneyCollection.supplyShopName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Supply Order</span></dt>
+                <dd>
+                    <div *ngIf="supplyMoneyCollection.supplyOrderId">
+                        <a [routerLink]="['/supply-order', supplyMoneyCollection.supplyOrderId, 'view']">{{supplyMoneyCollection.supplyOrderOrderNo}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/supply-money-collection', supplyMoneyCollection.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

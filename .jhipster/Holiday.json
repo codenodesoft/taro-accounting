@@ -1,0 +1,87 @@
+{
+    "name": "Holiday",
+    "fields": [
+        {
+            "fieldName": "fromDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "toDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "numberOfDays",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "moonDependency",
+            "fieldType": "YesOrNo",
+            "fieldValues": "YES,NO",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "holidayDeclaredBy",
+            "fieldType": "HolidayImposedAuthority",
+            "fieldValues": "GOVERNMENT,ORGANIZATIONAL,COMBINED,OTHERS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "holidayYear",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "holidayType",
+            "otherEntityRelationshipName": "holiday",
+            "relationshipValidateRules": "required",
+            "relationshipName": "holidayType",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190525155823",
+    "entityTableName": "holiday",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

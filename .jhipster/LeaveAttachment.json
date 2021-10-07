@@ -1,0 +1,48 @@
+{
+    "name": "LeaveAttachment",
+    "fields": [
+        {
+            "fieldName": "file",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "leaveApplication",
+            "otherEntityRelationshipName": "leaveAttachment",
+            "relationshipValidateRules": "required",
+            "relationshipName": "leaveApplication",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190603104541",
+    "entityTableName": "leave_attachment",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

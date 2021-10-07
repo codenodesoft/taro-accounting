@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+    <div class="col-12">
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <h2 *ngIf="!paymentVoucher.id" id="jhi-payment-voucher-heading">Create a Payment Voucher</h2>
+            <h2 *ngIf="paymentVoucher.id" id="jhi-payment-voucher-edit-heading">Payment Voucher {{paymentVoucher.voucherNo}}</h2>
+            <div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_voucherNo">Voucher No</label>
+                            <input readonly type="text" class="form-control" name="voucherNo" id="field_voucherNo"
+                                   [(ngModel)]="paymentVoucher.voucherNo" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_voucherDate">Voucher Date</label>
+                            <div class="input-group">
+                                <input [disabled]="paymentVoucher.postDate" id="field_voucherDate" type="date" class="form-control" name="voucherDate" ngbDatepicker  #voucherDateDp="ngbDatepicker" [(ngModel)]="paymentVoucher.voucherDate"
+                                />
+                                <span class="input-group-append">
+                                    <button [disabled]="paymentVoucher.postDate" type="button" class="btn btn-secondary" (click)="voucherDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_postDate">Post Date</label>
+                            <div class="input-group">
+                                <input disabled id="field_postDate" type="date" class="form-control" name="postDate" ngbDatepicker  #postDateDp="ngbDatepicker" [(ngModel)]="paymentVoucher.postDate"
+                                />
+                                <span class="input-group-append">
+                                    <button disabled type="button" class="btn btn-secondary" (click)="postDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_applicationType">Application Type</label>
+                            <select class="form-control" name="applicationType" [(ngModel)]="paymentVoucher.applicationType" id="field_applicationType" >
+                                <option value="REQUISITION">REQUISITION</option>
+                                <option value="PURCHASE_ORDER">PURCHASE ORDER</option>
+                                <option value="PAY_ROLL">PAY_ROLL</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_applicationId">Application Id</label>
+                            <input type="number" class="form-control" name="applicationId" id="field_applicationId"
+                                   [(ngModel)]="paymentVoucher.applicationId" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_account">Bank Account</label>
+                            <select [disabled]="paymentVoucher.postDate" class="form-control" id="field_account" name="account" [(ngModel)]="paymentVoucher.accountId" (ngModelChange)="accountSelected()">
+                                <option [ngValue]="null"></option>
+                                <option [ngValue]="mstAccountOption.id" *ngFor="let mstAccountOption of mstaccounts; trackBy: trackMstAccountById">{{mstAccountOption.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_accountBalance">Bank Account Balance</label>
+                            <input id="field_accountBalance" class="form-control" readonly value="{{(bankAccountBalance.totDebitTrans-bankAccountBalance.totCreditTrans)|currency: ' '}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_totalAmount">Total Voucher Amount</label>
+                            <input id="field_totalAmount" class="form-control" readonly value="{{totalAmount| currency: ' '}}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="paymentVoucher.voucherNo">
+                <div class="col-12">
+                    <jhi-payment-voucher-transaction [paymentVoucher]="paymentVoucher" (totalAmountChanged)="calculateTotalAmount($event)"></jhi-payment-voucher-transaction>
+                </div>
+            </div>
+            <div>
+                <jhi-alert></jhi-alert>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Back</span>
+                </button>
+                <button (click)="save()" type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving || paymentVoucher.postDate" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+                <button *ngIf="paymentVoucher.voucherNo && this.totalAmount>0" (click)="post()" type="submit" id="post-entity" [disabled]="editForm.form.invalid || isSaving || paymentVoucher.postDate" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Post</span>
+                </button>
+                <button  type="submit" *ngIf="paymentVoucher.postDate" id="report"  class="btn btn-secondary" (click)="downloadVoucherReport()">
+                    <fa-icon [icon]="'file-pdf'"></fa-icon>&nbsp;<span>Download Report</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

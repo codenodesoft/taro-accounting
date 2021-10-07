@@ -1,0 +1,48 @@
+{
+    "name": "Tax",
+    "fields": [
+        {
+            "fieldName": "amount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "taxStatus",
+            "fieldType": "TaxStatus",
+            "fieldValues": "ACTIVE,INACTIVE"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "financialAccountYear",
+            "otherEntityRelationshipName": "tax",
+            "relationshipName": "financialAccountYear",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "tax",
+            "relationshipName": "employee",
+            "otherEntityField": "fullName"
+        }
+    ],
+    "changelogDate": "20190514160136",
+    "entityTableName": "tax",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

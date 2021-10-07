@@ -1,0 +1,43 @@
+{
+    "name": "Attachment",
+    "fields": [
+        {
+            "fieldName": "file",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "academicInformation",
+            "otherEntityRelationshipName": "attachment",
+            "relationshipName": "academicInformation",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "trainingInformation",
+            "otherEntityRelationshipName": "attachment",
+            "relationshipName": "trainingInformation",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "experienceInformation",
+            "otherEntityRelationshipName": "attachment",
+            "relationshipName": "experienceInformation",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190405124355",
+    "entityTableName": "attachment",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

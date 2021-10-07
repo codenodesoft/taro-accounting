@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity StockInItem.
+    -->
+    <changeSet id="20190802061702-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="product_categories_id"
+                                 baseTableName="stock_in_item"
+                                 constraintName="fk_stock_in_item_product_categories_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product_category"/>
+
+        <addForeignKeyConstraint baseColumnNames="products_id"
+                                 baseTableName="stock_in_item"
+                                 constraintName="fk_stock_in_item_products_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+
+        <addForeignKeyConstraint baseColumnNames="inventory_locations_id"
+                                 baseTableName="stock_in_item"
+                                 constraintName="fk_stock_in_item_inventory_locations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="inventory_location"/>
+
+        <addForeignKeyConstraint baseColumnNames="inventory_sub_locations_id"
+                                 baseTableName="stock_in_item"
+                                 constraintName="fk_stock_in_item_inventory_sub_locations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="inventory_sub_location"/>
+
+        <addForeignKeyConstraint baseColumnNames="vendor_id"
+                                 baseTableName="stock_in_item"
+                                 constraintName="fk_stock_in_item_vendor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vendor"/>
+
+        <addForeignKeyConstraint baseColumnNames="stock_in_processes_id"
+                                 baseTableName="stock_in_item"
+                                 constraintName="fk_stock_in_item_stock_in_processes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="stock_in_process"/>
+
+        <addForeignKeyConstraint baseColumnNames="requisitions_id"
+                                 baseTableName="stock_in_item"
+                                 constraintName="fk_stock_in_item_requisitions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="requisition"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,18 @@
+version: '2'
+services:
+    soptorshi-mysql:
+        image: mysql:8.0.16
+        volumes:
+            - ~/volumes/jhipster/soptorshi/mysql/:/var/lib/mysql/
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=soptorshi_accounting
+        ports:
+            - 3313:3306
+        cap_add:
+            #- SYS_NICE
+            - CAP_SYS_NICE
+        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp --innodb_log_file_size=2000
+
+

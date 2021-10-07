@@ -1,0 +1,85 @@
+{
+    "name": "StockOutItem",
+    "fields": [
+        {
+            "fieldName": "containerTrackingId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "stockOutBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "stockOutDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "receiverId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "receivingPlace",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "productCategory",
+            "otherEntityRelationshipName": "stockOutItem",
+            "relationshipName": "productCategories",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "stockOutItem",
+            "relationshipName": "products",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "inventoryLocation",
+            "otherEntityRelationshipName": "stockOutItem",
+            "relationshipName": "inventoryLocations",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "inventorySubLocation",
+            "otherEntityRelationshipName": "stockOutItem",
+            "relationshipName": "inventorySubLocations",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "stockInItem",
+            "otherEntityRelationshipName": "stockOutItem",
+            "relationshipName": "stockInItems",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190802061703",
+    "entityTableName": "stock_out_item",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

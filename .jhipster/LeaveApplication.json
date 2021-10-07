@@ -1,0 +1,101 @@
+{
+    "name": "LeaveApplication",
+    "fields": [
+        {
+            "fieldName": "fromDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "toDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "numberOfDays",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paidLeave",
+            "fieldType": "PaidOrUnPaid",
+            "fieldValues": "PAID,UNPAID,UNDECLARED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "reason",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 250
+        },
+        {
+            "fieldName": "appliedOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "actionTakenOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "LeaveStatus",
+            "fieldValues": "WAITING,ACCEPTED,REJECTED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "leaveType",
+            "otherEntityRelationshipName": "leaveApplication",
+            "relationshipValidateRules": "required",
+            "relationshipName": "leaveTypes",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "leaveApplication",
+            "relationshipValidateRules": "required",
+            "relationshipName": "employees",
+            "otherEntityField": "fullName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "leaveApplication",
+            "relationshipValidateRules": "required",
+            "relationshipName": "appliedById",
+            "otherEntityField": "fullName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "leaveApplication",
+            "relationshipName": "actionTakenById",
+            "otherEntityField": "fullName"
+        }
+    ],
+    "changelogDate": "20190603104540",
+    "entityTableName": "leave_application",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

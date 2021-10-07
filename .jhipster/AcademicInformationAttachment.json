@@ -1,0 +1,32 @@
+{
+    "name": "AcademicInformationAttachment",
+    "fields": [
+        {
+            "fieldName": "file",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "academicInformationAttachment",
+            "relationshipValidateRules": "required",
+            "relationshipName": "employee",
+            "otherEntityField": "employeeId"
+        }
+    ],
+    "changelogDate": "20190409164949",
+    "entityTableName": "academic_attachment",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

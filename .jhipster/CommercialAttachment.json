@@ -1,0 +1,30 @@
+{
+    "name": "CommercialAttachment",
+    "fields": [
+        {
+            "fieldName": "file",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "commercialPi",
+            "otherEntityRelationshipName": "commercialAttachment",
+            "relationshipValidateRules": "required",
+            "relationshipName": "commercialPi",
+            "otherEntityField": "proformaNo"
+        }
+    ],
+    "changelogDate": "20191224021434",
+    "entityTableName": "commercial_attachment",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

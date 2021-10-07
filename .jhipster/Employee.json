@@ -1,0 +1,191 @@
+{
+    "name": "Employee",
+    "fields": [
+        {
+            "fieldName": "employeeId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fullName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fathersName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "mothersName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "birthDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "maritalStatus",
+            "fieldType": "MaritalStatus",
+            "fieldValues": "MARRIED,UNMARRIED,SEPARATED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "Gender",
+            "fieldValues": "MALE,FEMALE,OTHERS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "religion",
+            "fieldType": "Religion",
+            "fieldValues": "ISLAM,HINDU,BUDDHIST,CHRISTIANS,OTHERS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "permanentAddress",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "presentAddress",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contactNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bloodGroup",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "emergencyContact",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "joiningDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "manager",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "employeeStatus",
+            "fieldType": "EmployeeStatus",
+            "fieldValues": "IN_PROBATION,ACTIVE,RESIGNED,TERMINATED"
+        },
+        {
+            "fieldName": "employmentType",
+            "fieldType": "EmploymentType",
+            "fieldValues": "PERMANENT,TEMPORARY,ADHOC,PART_TIME"
+        },
+        {
+            "fieldName": "terminationDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "reasonOfTermination",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "userAccount",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "hourlySalary",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "bankAccountNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bankName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "department",
+            "otherEntityRelationshipName": "employee",
+            "relationshipName": "department",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "office",
+            "otherEntityRelationshipName": "employee",
+            "relationshipName": "office",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "designation",
+            "otherEntityRelationshipName": "employee",
+            "relationshipName": "designation",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190405124354",
+    "entityTableName": "employee",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

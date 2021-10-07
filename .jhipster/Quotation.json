@@ -1,0 +1,60 @@
+{
+    "name": "Quotation",
+    "fields": [
+        {
+            "fieldName": "quotationNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachment",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "selectionStatus",
+            "fieldType": "SelectionType",
+            "fieldValues": "SELECTED,NOT_SELECTED"
+        },
+        {
+            "fieldName": "totalAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "requisition",
+            "otherEntityRelationshipName": "quotation",
+            "relationshipName": "requisition",
+            "otherEntityField": "requisitionNo"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "vendor",
+            "otherEntityRelationshipName": "quotation",
+            "relationshipName": "vendor",
+            "otherEntityField": "companyName"
+        }
+    ],
+    "changelogDate": "20190628152325",
+    "entityTableName": "quotation",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

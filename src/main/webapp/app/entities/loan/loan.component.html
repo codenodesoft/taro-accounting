@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Loans</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-loan" [routerLink]="['/loan',loan.employeeId,'new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Loan
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+
+    <br/>
+    <div class="table-responsive" *ngIf="loans">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="amount"><span>Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="takenOn"><span>Taken On</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="monthlyPayable"><span>Monthly Payable</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="paymentStatus"><span>Payment Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="left"><span>Left</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let loan of loans ;trackBy: trackId">
+                <td>{{loan.amount}}</td>
+                <td>{{loan.takenOn | date:'mediumDate'}}</td>
+                <td>{{loan.monthlyPayable}}</td>
+                <td>{{loan.paymentStatus}}</td>
+                <td>{{loan.left}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/loan', loan.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/loan', loan.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                (click)="delete(loan.id)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div *ngIf="loans && loans.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+    <div class="row" *ngIf="loan.employeeId">
+        <div class="col-12" align="right">
+            <button class="btn btn-danger" (click)="goBack()" >Back</button>
+        </div>
+    </div>
+</div>

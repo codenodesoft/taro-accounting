@@ -1,0 +1,51 @@
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="vendor">
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Company Name</span></dt>
+                <dd>
+                    <span>{{vendor.companyName}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{vendor.description}}</span>
+                </dd>
+                <dt><span>Address</span></dt>
+                <dd>
+                    <span>{{vendor.address}}</span>
+                </dd>
+                <dt><span>Contact Number</span></dt>
+                <dd>
+                    <span>{{vendor.contactNumber}}</span>
+                </dd>
+                <dt><span>Remarks</span></dt>
+                <dd>
+                    <span>{{vendor.remarks}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                &nbsp;<span> Close</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/vendor', vendor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<br/>
+<hr/>
+<br/>
+<div class="row justify-content-center">
+    <div class="col-8">
+        <jhi-vendor-contact-person-extended-directive *ngIf="vendor.id" [vendorId]="vendor.id" ></jhi-vendor-contact-person-extended-directive>
+    </div>
+</div>

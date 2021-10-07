@@ -1,0 +1,43 @@
+{
+    "name": "SpecialAllowanceTimeLine",
+    "fields": [
+        {
+            "fieldName": "allowanceType",
+            "fieldType": "AllowanceType",
+            "fieldValues": "HOUSE_RENT,MEDICAL_ALLOWANCE,FESTIVAL_BONUS,OVERTIME_ALLOWANCE,FOOD_ALLOWANCE,DRIVER_ALLOWANCE,FUEL_LUB_ALLOWANCE,TRAVEL_ALLOWANCE,CONV_ALLOWANCE,MOBILE_ALLOWANCE,ARREAR_ALLOWANCE,OTHER_ALLOWANCE"
+        },
+        {
+            "fieldName": "religion",
+            "fieldType": "Religion",
+            "fieldValues": "ISLAM,HINDU,BUDDHIST,CHRISTIANS,OTHERS"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "month",
+            "fieldType": "MonthType",
+            "fieldValues": "JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190619170717",
+    "entityTableName": "special_allowance_time_line",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

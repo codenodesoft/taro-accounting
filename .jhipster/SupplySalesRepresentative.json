@@ -1,0 +1,94 @@
+{
+    "name": "SupplySalesRepresentative",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "contact",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "additionalInformation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "SupplySalesRepresentativeStatus",
+            "fieldValues": "ACTIVE,INACTIVE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZone",
+            "otherEntityRelationshipName": "supplySalesRepresentative",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZone",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyArea",
+            "otherEntityRelationshipName": "supplySalesRepresentative",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyArea",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZoneManager",
+            "otherEntityRelationshipName": "supplySalesRepresentative",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZoneManager",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyAreaManager",
+            "otherEntityRelationshipName": "supplySalesRepresentative",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyAreaManager",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191106144402",
+    "entityTableName": "supply_sales_representative",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

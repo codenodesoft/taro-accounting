@@ -1,0 +1,76 @@
+{
+    "name": "SupplyAreaManager",
+    "fields": [
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "SupplyAreaManagerStatus",
+            "fieldValues": "ACTIVE,INACTIVE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZone",
+            "otherEntityRelationshipName": "supplyAreaManager",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZone",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyArea",
+            "otherEntityRelationshipName": "supplyAreaManager",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyArea",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "employee",
+            "otherEntityRelationshipName": "supplyAreaManager",
+            "relationshipValidateRules": "required",
+            "relationshipName": "employee",
+            "otherEntityField": "fullName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZoneManager",
+            "otherEntityRelationshipName": "supplyAreaManager",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZoneManager",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191106144401",
+    "entityTableName": "supply_area_manager",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-attachment-heading">Create or edit a Attachment</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!attachment.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="attachment.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_file">File</label>
+                    <div>
+                        <div *ngIf="attachment.file" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(attachment.fileContentType, attachment.file)">open</a><br>
+                            <span class="pull-left">{{attachment.fileContentType}}, {{byteSize(attachment.file)}}</span>
+                            <button type="button" (click)="attachment.file=null;attachment.fileContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_file" (change)="setFileData($event, attachment, 'file', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="file" id="field_file"
+                        [(ngModel)]="attachment.file" />
+                    <input type="hidden" class="form-control" name="fileContentType" id="field_fileContentType"
+                        [(ngModel)]="attachment.fileContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_academicInformation">Academic Information</label>
+                    <select class="form-control" id="field_academicInformation" name="academicInformation" [(ngModel)]="attachment.academicInformationId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="academicInformationOption.id" *ngFor="let academicInformationOption of academicinformations; trackBy: trackAcademicInformationById">{{academicInformationOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_trainingInformation">Training Information</label>
+                    <select class="form-control" id="field_trainingInformation" name="trainingInformation" [(ngModel)]="attachment.trainingInformationId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="trainingInformationOption.id" *ngFor="let trainingInformationOption of traininginformations; trackBy: trackTrainingInformationById">{{trainingInformationOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_experienceInformation">Experience Information</label>
+                    <select class="form-control" id="field_experienceInformation" name="experienceInformation" [(ngModel)]="attachment.experienceInformationId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="experienceInformationOption.id" *ngFor="let experienceInformationOption of experienceinformations; trackBy: trackExperienceInformationById">{{experienceInformationOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

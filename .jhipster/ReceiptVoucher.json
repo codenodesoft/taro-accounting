@@ -1,0 +1,53 @@
+{
+    "name": "ReceiptVoucher",
+    "fields": [
+        {
+            "fieldName": "voucherNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "voucherDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "postDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "applicationType",
+            "fieldType": "ApplicationType",
+            "fieldValues": "REQUISITION,PURCHASE_ORDER,PAY_ROLL"
+        },
+        {
+            "fieldName": "applicationId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "mstAccount",
+            "otherEntityRelationshipName": "receiptVoucher",
+            "relationshipName": "account",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20191026143214",
+    "entityTableName": "receipt_voucher",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

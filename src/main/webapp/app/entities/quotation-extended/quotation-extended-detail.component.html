@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="quotation">
+            <h2><span>Quotation</span> <b>{{quotation.quotationNo}}</b></h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <div class="row">
+                <div class="col-4">
+                    <dl class="row-md jh-entity-details">
+                        <dt><span>Quotation No</span></dt>
+                        <dd>
+                            <span>{{quotation.quotationNo}}</span>
+                        </dd>
+
+                        <dt><span>Selection Status</span></dt>
+                        <dd><span>{{quotation.selectionStatus}}</span></dd>
+                    </dl>
+                </div>
+                <div class="col-4">
+                    <dl class="row-md jh-entity-details">
+                        <dt><span>Requisition No</span></dt>
+                        <dd><span>{{quotation.requisitionRequisitionNo}}</span></dd>
+
+                        <dt><span>Attachment</span></dt>
+                        <dd>
+                            <div *ngIf="quotation.attachment">
+                                <a (click)="openFile(quotation.attachmentContentType, quotation.attachment)">open</a>
+                                {{quotation.attachmentContentType}}, {{byteSize(quotation.attachment)}}
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-4">
+                    <dl class="row-md jh-entity-details">
+                        <dt><span>Vendor</span></dt>
+                        <dd><span>{{quotation.vendorCompanyName}}</span></dd>
+
+                        <dt><span>Total Amount</span></dt>
+                        <dd>
+                            <span>{{quotation.totalAmount}}</span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <br/>
+                <jhi-quotation-details-extended-directive-for-quotation [quotation]="quotation"></jhi-quotation-details-extended-directive-for-quotation>
+            </div>
+
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/quotation', quotation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

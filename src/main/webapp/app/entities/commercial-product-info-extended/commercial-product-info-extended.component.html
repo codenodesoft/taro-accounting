@@ -1,0 +1,149 @@
+<div>
+    <h2 id="page-heading">
+        <span>Commercial Product Infos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-commercial-product-info" [routerLink]="['/commercial-product-info/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Commercial Product Info
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="commercialProductInfos">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="taskNo"><span>Task No</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="productSpecification"><span>Product Specification</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="spSize"><span>Sp Size</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="offeredQuantity"><span>Offered Quantity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="offeredUnit"><span>Offered Unit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="offeredUnitPrice"><span>Offered Unit Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="offeredTotalPrice"><span>Offered Total Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="spSticker"><span>Sp Sticker</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="spLabel"><span>Sp Label</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="spQtyInPack"><span>Sp Qty In Pack</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="spQtyInMc"><span>Sp Qty In Mc</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ipColor"><span>Ip Color</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ipSize"><span>Ip Size</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ipSticker"><span>Ip Sticker</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ipLabel"><span>Ip Label</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ipQtyInMc"><span>Ip Qty In Mc</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="mcColor"><span>Mc Color</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="mcPly"><span>Mc Ply</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="mcSize"><span>Mc Size</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="mcSticker"><span>Mc Sticker</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="mcLabel"><span>Mc Label</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="cylColor"><span>Cyl Color</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="cylSize"><span>Cyl Size</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="cylQty"><span>Cyl Qty</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="buyingQuantity"><span>Buying Quantity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="buyingUnit"><span>Buying Unit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="buyingUnitPrice"><span>Buying Unit Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="buyingTotalPrice"><span>Buying Total Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="createdBy"><span>Created By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="createdOn"><span>Created On</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="updatedBy"><span>Updated By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="updatedOn"><span>Updated On</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="commercialBudgetBudgetNo"><span>Commercial Budget</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="productCategoriesName"><span>Product Categories</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="productsName"><span>Products</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let commercialProductInfo of commercialProductInfos ;trackBy: trackId">
+                <td><a [routerLink]="['/commercial-product-info', commercialProductInfo.id, 'view' ]">{{commercialProductInfo.id}}</a></td>
+                <td>{{commercialProductInfo.taskNo}}</td>
+                <td>{{commercialProductInfo.productSpecification}}</td>
+                <td>{{commercialProductInfo.spSize}}</td>
+                <td>{{commercialProductInfo.offeredQuantity}}</td>
+                <td>{{commercialProductInfo.offeredUnit}}</td>
+                <td>{{commercialProductInfo.offeredUnitPrice}}</td>
+                <td>{{commercialProductInfo.offeredTotalPrice}}</td>
+                <td>{{commercialProductInfo.spSticker}}</td>
+                <td>{{commercialProductInfo.spLabel}}</td>
+                <td>{{commercialProductInfo.spQtyInPack}}</td>
+                <td>{{commercialProductInfo.spQtyInMc}}</td>
+                <td>{{commercialProductInfo.ipColor}}</td>
+                <td>{{commercialProductInfo.ipSize}}</td>
+                <td>{{commercialProductInfo.ipSticker}}</td>
+                <td>{{commercialProductInfo.ipLabel}}</td>
+                <td>{{commercialProductInfo.ipQtyInMc}}</td>
+                <td>{{commercialProductInfo.mcColor}}</td>
+                <td>{{commercialProductInfo.mcPly}}</td>
+                <td>{{commercialProductInfo.mcSize}}</td>
+                <td>{{commercialProductInfo.mcSticker}}</td>
+                <td>{{commercialProductInfo.mcLabel}}</td>
+                <td>{{commercialProductInfo.cylColor}}</td>
+                <td>{{commercialProductInfo.cylSize}}</td>
+                <td>{{commercialProductInfo.cylQty}}</td>
+                <td>{{commercialProductInfo.buyingQuantity}}</td>
+                <td>{{commercialProductInfo.buyingUnit}}</td>
+                <td>{{commercialProductInfo.buyingUnitPrice}}</td>
+                <td>{{commercialProductInfo.buyingTotalPrice}}</td>
+                <td>{{commercialProductInfo.createdBy}}</td>
+                <td>{{commercialProductInfo.createdOn | date:'medium'}}</td>
+                <td>{{commercialProductInfo.updatedBy}}</td>
+                <td>{{commercialProductInfo.updatedOn | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="commercialProductInfo.commercialBudgetId">
+                        <a [routerLink]="['../commercial-budget', commercialProductInfo.commercialBudgetId , 'view' ]" >{{commercialProductInfo.commercialBudgetBudgetNo}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="commercialProductInfo.productCategoriesId">
+                        <a [routerLink]="['../product-category', commercialProductInfo.productCategoriesId , 'view' ]" >{{commercialProductInfo.productCategoriesName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="commercialProductInfo.productsId">
+                        <a [routerLink]="['../product', commercialProductInfo.productsId , 'view' ]" >{{commercialProductInfo.productsName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/commercial-product-info', commercialProductInfo.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/commercial-product-info', commercialProductInfo.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'commercial-product-info', { outlets: { popup: commercialProductInfo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

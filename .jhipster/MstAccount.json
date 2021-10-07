@@ -1,0 +1,67 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "mstGroup",
+            "otherEntityRelationshipName": "mstAccount",
+            "relationshipName": "group",
+            "otherEntityField": "name",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "yearOpenBalance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "yearOpenBalanceType",
+            "fieldType": "BalanceType",
+            "fieldValues": "DEBIT,CREDIT"
+        },
+        {
+            "fieldName": "yearCloseBalance",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "reservedFlag",
+            "fieldType": "ReservedFlag",
+            "fieldValues": "RESERVED,NOT_RESERVED"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "depreciationRate",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "depreciationType",
+            "fieldType": "DepreciationType",
+            "fieldValues": "MONTHLY,YEARLY"
+        }
+    ],
+    "changelogDate": "20190906083828",
+    "dto": "mapstruct",
+    "searchEngine": "elasticsearch",
+    "service": "serviceClass",
+    "entityTableName": "mst_account",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pager"
+}

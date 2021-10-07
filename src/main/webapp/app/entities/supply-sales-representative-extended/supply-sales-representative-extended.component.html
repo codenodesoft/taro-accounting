@@ -1,0 +1,99 @@
+<div>
+    <h2 id="page-heading">
+        <span>Sales Representative</span>
+        <button id="jh-create-entity"
+                class="btn btn-primary float-right jh-create-entity create-supply-sales-representative"
+                [routerLink]="['/supply-sales-representative/new']"
+                *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_SCM_ADMIN', 'ROLE_SCM_AREA_MANAGER']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="supplySalesRepresentatives">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                <th jhiSortBy="id"><span>ID</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="supplyZoneName"><span>Zone</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="supplyZoneManagerId"><span>Zone Manager</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="supplyAreaName"><span>Area</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="supplyAreaManagerId"><span>Area Manager</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="name"><span>Name</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="contact"><span>Contact</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th jhiSortBy="email"><span>Email</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_SCM_ADMIN', 'ROLE_SCM_AREA_MANAGER']"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']"
+                   [infiniteScrollDistance]="0">
+            <tr *ngFor="let supplySalesRepresentative of supplySalesRepresentatives ;trackBy: trackId">
+                <td><a
+                    [routerLink]="['/supply-sales-representative', supplySalesRepresentative.id, 'view' ]">{{supplySalesRepresentative.id}}</a>
+                </td>
+                <td>
+                    <div *ngIf="supplySalesRepresentative.supplyZoneId">
+                        <a [routerLink]="['../supply-zone', supplySalesRepresentative.supplyZoneId , 'view' ]">{{supplySalesRepresentative.supplyZoneName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplySalesRepresentative.supplyZoneManagerId">
+                        <a [routerLink]="['../supply-zone-manager', supplySalesRepresentative.supplyZoneManagerId , 'view' ]" >{{supplySalesRepresentative.supplyZoneManagerId | scmZoneManagerFilter: supplyZoneManagers}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplySalesRepresentative.supplyAreaId">
+                        <a [routerLink]="['../supply-area', supplySalesRepresentative.supplyAreaId , 'view' ]">{{supplySalesRepresentative.supplyAreaName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplySalesRepresentative.supplyAreaManagerId">
+                        <a [routerLink]="['../supply-area-manager', supplySalesRepresentative.supplyAreaManagerId , 'view' ]">{{supplySalesRepresentative.supplyAreaManagerId | scmAreaManagerFilter: supplyAreaManagers}}</a>
+                    </div>
+                </td>
+                <td>{{supplySalesRepresentative.name}}</td>
+                <td>{{supplySalesRepresentative.contact}}</td>
+                <td>{{supplySalesRepresentative.email}}</td>
+
+                <td class="text-right" width="20%"
+                    *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_SCM_ADMIN', 'ROLE_SCM_AREA_MANAGER']">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/supply-sales-representative', supplySalesRepresentative.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/supply-sales-representative', supplySalesRepresentative.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="commercialBudget">
+            <h2><span>Commercial Budget</span> {{commercialBudget.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Budget No</span></dt>
+                <dd>
+                    <span>{{commercialBudget.budgetNo}}</span>
+                </dd>
+                <dt><span>Type</span></dt>
+                <dd>
+                    <span>{{commercialBudget.type}}</span>
+                </dd>
+                <dt><span>Customer</span></dt>
+                <dd>
+                    <span>{{commercialBudget.customer}}</span>
+                </dd>
+                <dt><span>Budget Date</span></dt>
+                <dd>
+                    <span>{{commercialBudget.budgetDate}}</span>
+                </dd>
+                <dt><span>Company Name</span></dt>
+                <dd>
+                    <span>{{commercialBudget.companyName}}</span>
+                </dd>
+                <dt><span>Payment Type</span></dt>
+                <dd>
+                    <span>{{commercialBudget.paymentType}}</span>
+                </dd>
+                <dt><span>Transportation Type</span></dt>
+                <dd>
+                    <span>{{commercialBudget.transportationType}}</span>
+                </dd>
+                <dt><span>Sea Port Name</span></dt>
+                <dd>
+                    <span>{{commercialBudget.seaPortName}}</span>
+                </dd>
+                <dt><span>Sea Port Cost</span></dt>
+                <dd>
+                    <span>{{commercialBudget.seaPortCost}}</span>
+                </dd>
+                <dt><span>Air Port Name</span></dt>
+                <dd>
+                    <span>{{commercialBudget.airPortName}}</span>
+                </dd>
+                <dt><span>Air Port Cost</span></dt>
+                <dd>
+                    <span>{{commercialBudget.airPortCost}}</span>
+                </dd>
+                <dt><span>Land Port Name</span></dt>
+                <dd>
+                    <span>{{commercialBudget.landPortName}}</span>
+                </dd>
+                <dt><span>Land Port Cost</span></dt>
+                <dd>
+                    <span>{{commercialBudget.landPortCost}}</span>
+                </dd>
+                <dt><span>Insurance Price</span></dt>
+                <dd>
+                    <span>{{commercialBudget.insurancePrice}}</span>
+                </dd>
+                <dt><span>Total Transportation Cost</span></dt>
+                <dd>
+                    <span>{{commercialBudget.totalTransportationCost}}</span>
+                </dd>
+                <dt><span>Total Quantity</span></dt>
+                <dd>
+                    <span>{{commercialBudget.totalQuantity}}</span>
+                </dd>
+                <dt><span>Total Offered Price</span></dt>
+                <dd>
+                    <span>{{commercialBudget.totalOfferedPrice}}</span>
+                </dd>
+                <dt><span>Total Buying Price</span></dt>
+                <dd>
+                    <span>{{commercialBudget.totalBuyingPrice}}</span>
+                </dd>
+                <dt><span>Profit Amount</span></dt>
+                <dd>
+                    <span>{{commercialBudget.profitAmount}}</span>
+                </dd>
+                <dt><span>Profit Percentage</span></dt>
+                <dd>
+                    <span>{{commercialBudget.profitPercentage}}</span>
+                </dd>
+                <dt><span>Budget Status</span></dt>
+                <dd>
+                    <span>{{commercialBudget.budgetStatus}}</span>
+                </dd>
+                <dt><span>Proforma No</span></dt>
+                <dd>
+                    <span>{{commercialBudget.proformaNo}}</span>
+                </dd>
+                <dt><span>Created By</span></dt>
+                <dd>
+                    <span>{{commercialBudget.createdBy}}</span>
+                </dd>
+                <dt><span>Created On</span></dt>
+                <dd>
+                    <span>{{commercialBudget.createdOn}}</span>
+                </dd>
+                <dt><span>Updated By</span></dt>
+                <dd>
+                    <span>{{commercialBudget.updatedBy}}</span>
+                </dd>
+                <dt><span>Updated On</span></dt>
+                <dd>
+                    <span>{{commercialBudget.updatedOn}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/commercial-budget', commercialBudget.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

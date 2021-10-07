@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div *ngIf="purchaseOrder">
+            <h2>Purchase Order</h2>
+            <br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <dl class="row-md jh-entity-details">
+
+                    <dt><span>Purchase Order No</span></dt>
+                    <dd>
+                        <span>{{purchaseOrder.purchaseOrderNo}}</span>
+                    </dd>
+
+                    <dt><span>Requisition</span></dt>
+                    <dd>
+                        <div *ngIf="purchaseOrder.requisitionId">
+                            <a [routerLink]="['/requisition', purchaseOrder.requisitionId, 'view']">{{purchaseOrder.requisitionRequisitionNo}}</a>
+                        </div>
+                    </dd>
+                     <dt><span>Issue Date</span></dt>
+                     <dd>
+                         <span>{{purchaseOrder.issueDate}}</span>
+                      </dd>
+                        <dt><span>Work Order No</span></dt>
+                        <dd>
+                            <span>{{purchaseOrder.workOrderNo}}</span>
+                        </dd>
+
+                        <dt><span>Quotation</span></dt>
+                        <dd>
+                            <span>{{purchaseOrder.quotationQuotationNo}}</span>
+                        </dd>
+
+                            <dt><span>Status</span></dt>
+                            <dd>
+                                <span>{{purchaseOrder.status}}</span>
+                            </dd>
+                        </dl>
+                    </dl>
+
+                </div>
+
+                <div class="col-md-12">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+{
+    "name": "SupplyMoneyCollection",
+    "fields": [
+        {
+            "fieldName": "totalAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "receivedAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "remarks",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZone",
+            "otherEntityRelationshipName": "supplyMoneyCollection",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZone",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyZoneManager",
+            "otherEntityRelationshipName": "supplyMoneyCollection",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyZoneManager",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyArea",
+            "otherEntityRelationshipName": "supplyMoneyCollection",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyArea",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyAreaManager",
+            "otherEntityRelationshipName": "supplyMoneyCollection",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyAreaManager",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplySalesRepresentative",
+            "otherEntityRelationshipName": "supplyMoneyCollection",
+            "relationshipName": "supplySalesRepresentative",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyShop",
+            "otherEntityRelationshipName": "supplyMoneyCollection",
+            "relationshipValidateRules": "required",
+            "relationshipName": "supplyShop",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supplyOrder",
+            "otherEntityRelationshipName": "supplyMoneyCollection",
+            "relationshipName": "supplyOrder",
+            "otherEntityField": "orderNo"
+        }
+    ],
+    "changelogDate": "20191106144407",
+    "entityTableName": "supply_money_collection",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

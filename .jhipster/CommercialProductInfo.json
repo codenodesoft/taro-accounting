@@ -1,0 +1,232 @@
+{
+    "name": "CommercialProductInfo",
+    "fields": [
+        {
+            "fieldName": "taskNo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "productSpecification",
+            "fieldType": "ProductSpecification",
+            "fieldValues": "FILLET,STEAK,CUBE,BLOCK,BUTTERFLY",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "spSize",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "offeredQuantity",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "offeredUnit",
+            "fieldType": "UnitOfMeasurements",
+            "fieldValues": "PCS,KG,TON,GRAM",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "offeredUnitPrice",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "offeredTotalPrice",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "spGlazing",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "spSurfaceType",
+            "fieldType": "SurfaceType",
+            "fieldValues": "TRIMMED,UNTRIMMED"
+        },
+        {
+            "fieldName": "spOthersDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "spSticker",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "spLabel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "spQtyInPack",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "spQtyInMc",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "ipColor",
+            "fieldType": "PackColor",
+            "fieldValues": "PLAIN,PRINT,BOTH,NONE"
+        },
+        {
+            "fieldName": "ipSize",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ipSticker",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ipLabel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ipQtyInMc",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "ipCost",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "mcColor",
+            "fieldType": "PackColor",
+            "fieldValues": "PLAIN,PRINT,BOTH,NONE"
+        },
+        {
+            "fieldName": "mcPly",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mcSize",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mcSticker",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mcLabel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mcCost",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "cylColor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cylSize",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cylQty",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "cylCost",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "buyingQuantity",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "buyingUnit",
+            "fieldType": "UnitOfMeasurements",
+            "fieldValues": "PCS,KG,TON,GRAM",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "buyingUnitPrice",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "buyingPrice",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "buyingTotalPrice",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "commercialBudget",
+            "otherEntityRelationshipName": "commercialProductInfo",
+            "relationshipName": "commercialBudget",
+            "otherEntityField": "budgetNo"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "productCategory",
+            "otherEntityRelationshipName": "commercialProductInfo",
+            "relationshipName": "productCategories",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "commercialProductInfo",
+            "relationshipName": "products",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20191223190543",
+    "entityTableName": "commercial_product_info",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

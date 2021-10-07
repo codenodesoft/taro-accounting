@@ -1,0 +1,124 @@
+<div class="row justify-content-center">
+    <div *ngIf="requisition.commercialId" class="col-md-4">
+        <jhi-commercial-info-dir [commercialId]="requisition.commercialId"></jhi-commercial-info-dir>
+    </div>
+    <div [ngClass]="{'col-md-8': requisition.commercialId, 'col-md-12': !requisition.commercialId}">
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <h2 id="jhi-requisition-heading" >
+                <p *ngIf="requisition.id">Update  Requisition <b>{{requisition.requisitionNo}}</b></p>
+                <p *ngIf="!requisition.id">Create a Requisition</p>
+            </h2>
+            <div>
+                <jhi-alert></jhi-alert>
+                <div class="row" >
+                        <div class="form-group col-md-6" >
+                            <label class="form-control-label" for="field_requisitionNo">Requisition No</label>
+                            <input type="text" class="form-control" name="requisitionNo" id="field_requisitionNo"
+                                   [(ngModel)]="requisition.requisitionNo" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="form-control-label" for="field_productCategory">Product Category</label>
+                            <input  type="text" class="form-control" name="mainGroup" id="field_productCategory"
+                                   [(ngModel)]="selectedProductCategory" [ngbTypeahead]="search"
+                                   (focus)="focus$.next($event.target.value)"
+                                   (click)="click$.next($event.target.value)"
+                                   #instance="ngbTypeahead"
+                            />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="form-control-label" for="field_requisitionDate">Requisition Date</label>
+                            <div class="input-group">
+                                <input  id="field_requisitionDate" type="text" class="form-control" name="requisitionDate" ngbDatepicker  #requisitionDateDp="ngbDatepicker" [(ngModel)]="requisition.requisitionDate"
+                                />
+                                <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="requisitionDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" *ngIf="requisition.amount">
+                            <label class="form-control-label" for="field_amount">Amount</label>
+                            <label class="form-control">{{requisition.amount|currency:' '}}</label>
+                           <!-- <input readonly type="number" class="form-control" name="amount" id="field_amount"
+                                   [(ngModel)]="requisition.amount" />-->
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <label class="form-control-label" for="field_status">Status</label>
+                            <label class="form-control" id="field_status" readonly><b>{{requisition.status}}</b></label>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="form-control-label" for="field_reason">Reason</label>
+                            <textarea  class="form-control" name="reason" id="field_reason"
+                                      [(ngModel)]="requisition.reason" ></textarea>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><hr/></div>
+                </div>
+                <div class="row" *ngIf="requisition.id">
+                    <div class="col-6">
+                        <jhi-requisition-details-extended-directive [requisition]="requisition"></jhi-requisition-details-extended-directive>
+                    </div>
+                    <div class="col-6">
+                        <jhi-quotation-for-requisition [requisition]="requisition"></jhi-quotation-for-requisition>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12"><hr/></div>
+                </div>
+                <div class="row" *ngIf="requisition.id">
+                    <div class="col-md-12" [ngClass]="{'col-md-6': requisition.status==='APPROVED_BY_CFO', 'col-md-12': requisition.status!=='APPROVED_BY_CFO'}">
+                        <jhi-requisition-messages-extended-directive [requisitionId]="requisition.id"></jhi-requisition-messages-extended-directive>
+                    </div>
+                    <div class="col-md-6" *ngIf="requisition.status==='APPROVED_BY_CFO'" >
+                        <jhi-purchase-order-extended-requisition-directive [requisition]="requisition"></jhi-purchase-order-extended-requisition-directive>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span>Back</span>
+                </button>
+                <button type="submit" id="save-entity" (click)="save()" *ngIf="requisition.status==null " [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+                <button type="button" id="head-forwarding-entity" *ngIf="requisition.status==null" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary" (click)="forwardToHead()">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Forward To Head</span>
+                </button>
+                <button type="button" id="approve_head"  *ngIf="this.accountService.hasAnyAuthority(['ROLE_DEPARTMENT_HEAD']) && requisition.status=== 'WAITING_FOR_HEADS_APPROVAL'" (click)="approveByHead()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Forward</span>
+                </button>
+                <button type="button" id="reject_head"  *ngIf="this.accountService.hasAnyAuthority(['ROLE_DEPARTMENT_HEAD']) && requisition.status=== 'WAITING_FOR_HEADS_APPROVAL'" (click)="rejectByHead()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Reject</span>
+                </button>
+                <button type="button" id="approve_purchase_committee"  *ngIf="this.accountService.hasAnyAuthority(['ROLE_PURCHASE_COMMITTEE']) && requisition.status=== 'FORWARDED_BY_HEAD'" (click)="approveByPurchaseCommittee()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Forward</span>
+                </button>
+                <button type="button" id="reject_purchase_committee"  *ngIf="this.accountService.hasAnyAuthority(['ROLE_PURCHASE_COMMITTEE']) && requisition.status=== 'FORWARDED_BY_HEAD'" (click)="rejectByPurchaseCommittee()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Reject</span>
+                </button>
+                <button type="button" id="approve_cfo"  *ngIf="this.accountService.hasAnyAuthority(['ROLE_CFO']) && requisition.status=== 'FORWARDED_BY_PURCHASE_COMMITTEE'" (click)="approveByCFO()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Approve</span>
+                </button>
+                <button type="button" id="reject_cfo"  *ngIf="this.accountService.hasAnyAuthority(['ROLE_CFO']) && requisition.status=== 'FORWARDED_BY_PURCHASE_COMMITTEE'" (click)="rejectByCFO()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Reject</span>
+                </button>
+                <button type="button" id="receive_requester"  *ngIf="this.accountService.hasAnyAuthority(['ROLE_REQUISITION']) && requisition.status=== 'APPROVED_BY_CFO'" (click)="receivedByRequester()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Receive</span>
+                </button>
+                <button type="button" id="receive_head"  *ngIf="this.accountService.hasAnyAuthority(['ROLE_DEPARTMENT_HEAD']) && requisition.status=== 'RECEIVED_BY_REQUISIONER'" (click)="receivedAndVerifiedByHead()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Receive</span>
+                </button>
+                <button type="button" id="receive_heads"  *ngIf="this.accountService.hasAnyAuthority(['ROLE_CFO']) && requisition.status=== 'RECEIVED_VERIFIED_BY_HEAD'" (click)="closedByCFO()" [disabled]="editForm.form.invalid || isSaving" class="btn btn-secondary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Receive</span>
+                </button>
+                <button type="button" class="btn btn-primary" (click)="createPurchaseOrder()" *ngIf="requisition.status==='APPROVED_BY_CFO'">
+                    Create Purchase Order
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

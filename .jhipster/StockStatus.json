@@ -1,0 +1,103 @@
+{
+    "name": "StockStatus",
+    "fields": [
+        {
+            "fieldName": "containerTrackingId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "totalQuantity",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "unit",
+            "fieldType": "UnitOfMeasurements",
+            "fieldValues": "PCS,KG,TON,GRAM",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "availableQuantity",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "totalPrice",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "availablePrice",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "stockInBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "stockInDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "stockInItem",
+            "otherEntityRelationshipName": "stockStatus",
+            "relationshipName": "stockInItem",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "productCategory",
+            "otherEntityRelationshipName": "stockStatus",
+            "relationshipName": "productCategories",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "stockStatus",
+            "relationshipName": "products",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "inventoryLocation",
+            "otherEntityRelationshipName": "stockStatus",
+            "relationshipName": "inventoryLocations",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "inventorySubLocation",
+            "otherEntityRelationshipName": "stockStatus",
+            "relationshipName": "inventorySubLocations",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190803152917",
+    "entityTableName": "stock_status",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

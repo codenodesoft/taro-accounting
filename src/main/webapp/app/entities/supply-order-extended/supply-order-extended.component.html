@@ -1,0 +1,92 @@
+<div>
+    <h2 id="page-heading">
+        <span>Order</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-supply-order"
+                [routerLink]="['/supply-order/new']" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_SCM_ADMIN', 'ROLE_SCM_AREA_MANAGER']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="supplyOrders">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="supplyZoneName"><span>Zone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="supplyZoneManagerId"><span>Zone Manager</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="supplyAreaName"><span>Area</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="supplyAreaManagerId"><span>Area Manager</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="supplySalesRepresentativeName"><span>Sales Representative</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="supplyShopName"><span>Supply Shop</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="orderNo"><span>Order No</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="dateOfOrder"><span>Date Of Order</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="deliveryDate"><span>Delivery Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="status"><span>Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <!--<th jhiSortBy="areaWiseAccumulationRefNo"><span>Area Wise Accumulation Ref No</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+                <th *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_SCM_ADMIN', 'ROLE_SCM_AREA_MANAGER']"></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let supplyOrder of supplyOrders ;trackBy: trackId">
+                <td><a [routerLink]="['/supply-order', supplyOrder.id, 'view' ]">{{supplyOrder.id}}</a></td>
+                <td>
+                    <div *ngIf="supplyOrder.supplyZoneId">
+                        <a [routerLink]="['../supply-zone', supplyOrder.supplyZoneId , 'view' ]" >{{supplyOrder.supplyZoneName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplyOrder.supplyZoneManagerId">
+                        <a [routerLink]="['../supply-zone-manager', supplyOrder.supplyZoneManagerId , 'view' ]" >{{supplyOrder.supplyZoneManagerId | scmZoneManagerFilter: supplyZoneManagers}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplyOrder.supplyAreaId">
+                        <a [routerLink]="['../supply-area', supplyOrder.supplyAreaId , 'view' ]" >{{supplyOrder.supplyAreaName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplyOrder.supplyAreaManagerId">
+                        <a [routerLink]="['../supply-area-manager', supplyOrder.supplyAreaManagerId , 'view' ]" >{{supplyOrder.supplyAreaManagerId | scmAreaManagerFilter: supplyAreaManagers}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplyOrder.supplySalesRepresentativeId">
+                        <a [routerLink]="['../supply-sales-representative', supplyOrder.supplySalesRepresentativeId , 'view' ]" >{{supplyOrder.supplySalesRepresentativeName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplyOrder.supplyShopId">
+                        <a [routerLink]="['../supply-shop', supplyOrder.supplyShopId , 'view' ]" >{{supplyOrder.supplyShopName}}</a>
+                    </div>
+                </td>
+                <td>{{supplyOrder.orderNo}}</td>
+                <td>{{supplyOrder.dateOfOrder | date:'mediumDate'}}</td>
+                <td>{{supplyOrder.deliveryDate | date:'mediumDate'}}</td>
+                <td>{{supplyOrder.status}}</td>
+                <!--<td>{{supplyOrder.areaWiseAccumulationRefNo}}</td>-->
+                <td class="text-right" width="20%" *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_SCM_ADMIN', 'ROLE_SCM_AREA_MANAGER']">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/supply-order', supplyOrder.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/supply-order', supplyOrder.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

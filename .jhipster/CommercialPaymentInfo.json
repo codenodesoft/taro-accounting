@@ -1,0 +1,73 @@
+{
+    "name": "CommercialPaymentInfo",
+    "fields": [
+        {
+            "fieldName": "paymentType",
+            "fieldType": "PaymentType",
+            "fieldValues": "LC,TT,CASH,CHEQUE,OTHERS"
+        },
+        {
+            "fieldName": "totalAmountToPay",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "totalAmountPaid",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "remainingAmountToPay",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paymentStatus",
+            "fieldType": "CommercialPaymentStatus",
+            "fieldValues": "WAITING_FOR_PAYMENT_CONFIRMATION,PAYMENT_CONFIRMED"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedOn",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "commercialPi",
+            "otherEntityRelationshipName": "commercialPaymentInfo",
+            "relationshipValidateRules": "required",
+            "relationshipName": "commercialPi",
+            "otherEntityField": "proformaNo",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200415111602",
+    "entityTableName": "commercial_payment_info",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}

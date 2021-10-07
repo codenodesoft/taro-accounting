@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>Money Collections</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-supply-money-collection" [routerLink]="['/supply-money-collection/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <!--<form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>-->
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="supplyMoneyCollections">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="supplyShopName"><span>Shop</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="supplyOrderOrderNo"><span>Order</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="totalAmount"><span>Total Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="receivedAmount"><span>Received Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let supplyMoneyCollection of supplyMoneyCollections ;trackBy: trackId">
+                <td><a [routerLink]="['/supply-money-collection', supplyMoneyCollection.id, 'view' ]">{{supplyMoneyCollection.id}}</a></td>
+                <td>
+                    <div *ngIf="supplyMoneyCollection.supplyShopId">
+                        <a [routerLink]="['../supply-shop', supplyMoneyCollection.supplyShopId , 'view' ]" >{{supplyMoneyCollection.supplyShopName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplyMoneyCollection.supplyOrderId">
+                        <a [routerLink]="['../supply-order', supplyMoneyCollection.supplyOrderId , 'view' ]" >{{supplyMoneyCollection.supplyOrderOrderNo}}</a>
+                    </div>
+                </td>
+                <td>{{supplyMoneyCollection.totalAmount}}</td>
+                <td>{{supplyMoneyCollection.receivedAmount}}</td>
+
+                <td class="text-right" width="20%">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/supply-money-collection', supplyMoneyCollection.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/supply-money-collection', supplyMoneyCollection.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

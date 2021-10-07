@@ -1,0 +1,50 @@
+{
+    "name": "FinancialAccountYear",
+    "fields": [
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "unique"
+            ]
+        },
+        {
+            "fieldName": "previousStartDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "previousEndDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "durationStr",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "FinancialYearStatus",
+            "fieldValues": "ACTIVE,NOT_ACTIVE",
+            "fieldValidateRules": [
+                "unique"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190513174304",
+    "entityTableName": "financial_account_year",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "searchEngine": "elasticsearch"
+}
