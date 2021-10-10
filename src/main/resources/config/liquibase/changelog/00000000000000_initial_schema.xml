@@ -18,7 +18,7 @@
 				<tableExists tableName="jhi_user"/>
 			</not>
 		</preConditions>
-        <createTable tableName="jhi_user">
+        <!--<createTable tableName="jhi_user">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -47,7 +47,7 @@
             </column>
             <column name="last_modified_by" type="varchar(50)"/>
             <column name="last_modified_date" type="timestamp"/>
-        </createTable>
+        </createTable>-->
 
         <createTable tableName="jhi_authority">
             <column name="name" type="varchar(50)">
